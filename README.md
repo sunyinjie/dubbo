@@ -1,4 +1,4 @@
-dubboԴ���7
+dubbo源码学习+部分中文注释
 
 [![Build Status](https://travis-ci.org/alibaba/dubbo.svg?branch=master)](https://travis-ci.org/alibaba/dubbo) [![Gitter](https://badges.gitter.im/alibaba/dubbo.svg)](https://gitter.im/alibaba/dubbo?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
@@ -21,7 +21,7 @@ For more details, please refer to [dubbo.io](http://dubbo.io).
 ## Quick Start
 This guide gets you started with dubbo with a simple working example.
 #### Download the sources(examples)
-You’ll need a local copy of the example code to work through this quickstart. Download the demo code from our [Github repository](https://github.com/alibaba/dubbo) (the following command clones the entire repository, but you just need the `dubbo-demo` for this quickstart and other tutorials):
+Youâ€™ll need a local copy of the example code to work through this quickstart. Download the demo code from our [Github repository](https://github.com/alibaba/dubbo) (the following command clones the entire repository, but you just need the `dubbo-demo` for this quickstart and other tutorials):
 
 ```sh
 $ cd ~
