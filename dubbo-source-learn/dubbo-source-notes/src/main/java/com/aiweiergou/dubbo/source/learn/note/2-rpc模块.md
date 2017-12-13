@@ -1,8 +1,10 @@
 摘要：rpc是dubbo最核心的模块，定义了dubbo作为整个rpc框架最核心的接口和抽象实现，因此对于学习源码非常重要
+
 ------------------------------------------------------------
 # 简单的类图
 ![](/dubbo-source-learn/dubbo-source-notes/src/main/resources/img/2_模块类图.png)
 去除了一些非关键属性和方法定义，以及一些非核心类合接口
+
 -----------------
 # 核心类说明
 ## Protocol
@@ -33,11 +35,13 @@ AbstractProxyFactory是其抽象实现，提供了getProxy的模版方法实现�
 该接口是服务的执行体。
 它有获取服务发布的URL，服务的接口类等关键属性的行为；还有核心的服务执行方法invoke，执行该方法后返回执行结果Result，而传递的参数是调用信息Invocation。
 该接口有大量的抽象和具体实现类。AbstractProxyInvoker是基于代理的执行器抽象实现，AbstractInvoker是通用的抽象实现。
+
 --------------------
 # 服务发布流程
 ![](/dubbo-source-learn/dubbo-source-notes/src/main/resources/img/2_服务发布流程.jpg)
 首先ServiceConfig类拿到对外提供服务的实际类ref(如：HelloWorldImpl),然后通过ProxyFactory类的getInvoker方法使用ref生成一个AbstractProxyInvoker实例，到这一步就完成具体服务到Invoker的转化。接下来就是Invoker转换到Exporter的过程。
 Dubbo处理服务暴露的关键就在Invoker转换到Exporter的过程(如上图中的红色部分)，后面以Dubbo和RMI这两种典型协议的实现来进行说明。
+
 ------------------
 # 服务引用流程
 ![](/dubbo-source-learn/dubbo-source-notes/src/main/resources/img/2_服务引用流程.jpg)
