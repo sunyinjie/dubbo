@@ -528,7 +528,7 @@ private T createAdaptiveExtension() {
 8. 若方法上的Adaptive注解的value是空，则使用“扩展点接口名的点分隔" 作为Key。
 9. 以value作为key，从url对象中获得值，然后将获得的值调用方法getExtension获得扩展点实现对象。这样就实现了动态注入扩展实现。
 
-**进一步分析内容 [参见](/5_SPI机制自适应Adaptive.md)**
+**进一步分析内容 [参见](/dubbo-source-learn/dubbo-source-notes/src/main/java/com/aiweiergou/dubbo/source/learn/note//5_SPI机制自适应Adaptive.md)**
 ### 获得自动激活扩展列表方法 getActivateExtension
 对于集合类扩展点，比如：Filter, InvokerListener, ExportListener, TelnetHandler, StatusChecker等，
 可以同时加载多个实现，此时，可以用自动激活来简化配置。本方法实现了这一特性。
