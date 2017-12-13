@@ -2,7 +2,7 @@
 
 ----------
 # 简化类图
-![](/dubbo-source-learn/dubbo-source-notes/src/main/resources/img/3_简化类图.png)
+![](/dubbo-source-learn/dubbo-source-notes/src/main/resources/img/3_简化类图.jpg)
 该模块下的类主要是实现了dubbo-rpc-api和dubbo-remoting-api两个模块中定义的一些接口和抽象类。扩展了一种duubo框架自定义的dubbo协议，包括编解码和方法调用处理等。
 
 --------
