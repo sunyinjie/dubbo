@@ -38,6 +38,18 @@ public class ConsistentHashLoadBalance extends AbstractLoadBalance {
 
     private final ConcurrentMap<String, ConsistentHashSelector<?>> selectors = new ConcurrentHashMap<String, ConsistentHashSelector<?>>();
 
+
+    /**
+     * 一致性hash，相同参数的请求永远发到相同的provider上
+     * 优点：当某台服务挂了，原本发往到该provider的请求，基于虚拟节点，平摊到其他providers，不会引起剧烈变动
+     * 缺省只对第一个参数hash，缺省用160份虚拟节点
+     *
+     * @param invokers
+     * @param url
+     * @param invocation
+     * @param <T>
+     * @return
+     */
     @SuppressWarnings("unchecked")
     @Override
     protected <T> Invoker<T> doSelect(List<Invoker<T>> invokers, URL url, Invocation invocation) {

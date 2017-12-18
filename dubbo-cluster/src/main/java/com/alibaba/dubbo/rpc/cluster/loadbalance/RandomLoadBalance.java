@@ -34,6 +34,18 @@ public class RandomLoadBalance extends AbstractLoadBalance {
 
     private final Random random = new Random();
 
+    /**
+     * 按权重设置计算概率
+     *
+     * 在一个截面上的碰撞概率高，但是调用量越大越均匀
+     * 而且按概率使用权重后也比较均匀，有利于动态调整提供者权重
+     *
+     * @param invokers
+     * @param url
+     * @param invocation
+     * @param <T>
+     * @return
+     */
     protected <T> Invoker<T> doSelect(List<Invoker<T>> invokers, URL url, Invocation invocation) {
         int length = invokers.size(); // 总个数
         int totalWeight = 0; // 总权重
@@ -52,6 +64,7 @@ public class RandomLoadBalance extends AbstractLoadBalance {
             // 并确定随机值落在哪个片断上
             for (int i = 0; i < length; i++) {
                 offset -= getWeight(invokers.get(i), invocation);
+                // 通过随机数和权重相减后的值是否小于0来确定是否调用
                 if (offset < 0) {
                     return invokers.get(i);
                 }

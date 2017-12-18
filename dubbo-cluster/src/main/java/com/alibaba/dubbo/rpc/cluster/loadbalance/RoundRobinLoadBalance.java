@@ -38,6 +38,20 @@ public class RoundRobinLoadBalance extends AbstractLoadBalance {
 
     private final ConcurrentMap<String, AtomicPositiveInteger> sequences = new ConcurrentHashMap<String, AtomicPositiveInteger>();
 
+    /**
+     * 轮询
+     * Nginx用的也是权重轮询调度算法
+     *
+     * 存在慢请求累计问题
+     * 比如B机器慢，但是没有挂掉，打到B机器上的请求卡住了，当下次请求轮询再到B，又卡在那
+     * 下下次 下下下次，如此循环，那B服务就卡到不行~~~~~~~
+     *
+     * @param invokers
+     * @param url
+     * @param invocation
+     * @param <T>
+     * @return
+     */
     protected <T> Invoker<T> doSelect(List<Invoker<T>> invokers, URL url, Invocation invocation) {
         String key = invokers.get(0).getUrl().getServiceKey() + "." + invocation.getMethodName();
         int length = invokers.size(); // 总个数

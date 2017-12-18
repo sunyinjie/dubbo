@@ -35,6 +35,18 @@ public class LeastActiveLoadBalance extends AbstractLoadBalance {
 
     private final Random random = new Random();
 
+    /**
+     * 最少活跃数，相同活跃数的随机，
+     * 活跃数指调用前后计数差
+     *
+     * 优点：使慢provider收到更少的请求，因为越慢的provider的调用前后计数差越大
+     *
+     * @param invokers
+     * @param url
+     * @param invocation
+     * @param <T>
+     * @return
+     */
     protected <T> Invoker<T> doSelect(List<Invoker<T>> invokers, URL url, Invocation invocation) {
         int length = invokers.size(); // 总个数
         int leastActive = -1; // 最小的活跃数

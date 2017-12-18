@@ -100,6 +100,7 @@ public class ServiceBean<T> extends ServiceConfig<T> implements InitializingBean
         this.beanName = name;
     }
 
+    // spring事件机制，比如监听spring容器初始化完成
     public void onApplicationEvent(ApplicationEvent event) {
         if (ContextRefreshedEvent.class.getName().equals(event.getClass().getName())) {
             if (isDelay() && !isExported() && !isUnexported()) {
