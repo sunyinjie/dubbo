@@ -29,7 +29,9 @@ public class DemoAction {
     }
 
     public void start() throws Exception {
-        for (int i = 0; i < Integer.MAX_VALUE; i++) {
+        String hello = demoService.sayHello("world");
+
+        /*for (int i = 0; i < Integer.MAX_VALUE; i++) {
             try {
                 String hello = demoService.sayHello("world" + i);
                 System.out.println("[" + new SimpleDateFormat("HH:mm:ss").format(new Date()) + "] " + hello);
@@ -37,7 +39,7 @@ public class DemoAction {
                 e.printStackTrace();
             }
             Thread.sleep(2000);
-        }
+        }*/
     }
 
 }

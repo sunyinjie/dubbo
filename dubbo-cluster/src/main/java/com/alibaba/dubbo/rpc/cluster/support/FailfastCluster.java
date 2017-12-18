@@ -22,6 +22,9 @@ import com.alibaba.dubbo.rpc.cluster.Directory;
 
 /**
  * 快速失败，只发起一次调用，失败立即报错，通常用于非幂等性的写操作。
+ * 适用于写接口
+ * 因为如果存在网络抖动情况，快速失败可以避免写入多个值
+ * 如果用失败转移（重试）的容错方式，那就要写入多个值了
  * <p>
  * <a href="http://en.wikipedia.org/wiki/Fail-fast">Fail-fast</a>
  *

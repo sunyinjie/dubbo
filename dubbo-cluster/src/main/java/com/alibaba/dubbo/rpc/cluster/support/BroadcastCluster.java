@@ -22,7 +22,13 @@ import com.alibaba.dubbo.rpc.cluster.Directory;
 
 /**
  * BroadcastCluster
- *
+ * 广播调用所有providers，重点：
+ * 1、逐个调用
+ * 2、任意1台报错，则报错
+ * 3、一般用于通知所有提供者更新缓存或日志等本地资源信息
+ * 4、和availableCluster有点相似也有点不同
+ *    availableCluster是逐个调用所有可用的provider，1个成功就直接返回
+ *    broadcastCluster是逐个调用所有******所有所有所有的provider，全部调用完成才返回，调用过程中任意1个出错，就失败了
  * @author william.liangf
  */
 public class BroadcastCluster implements Cluster {

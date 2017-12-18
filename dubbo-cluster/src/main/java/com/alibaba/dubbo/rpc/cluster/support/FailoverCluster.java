@@ -22,6 +22,7 @@ import com.alibaba.dubbo.rpc.cluster.Directory;
 
 /**
  * 失败转移，当出现失败，重试其它服务器，通常用于读操作，但重试会带来更长延迟。
+ * 适用于读接口
  * <p>
  * <a href="http://en.wikipedia.org/wiki/Failover">Failover</a>
  *

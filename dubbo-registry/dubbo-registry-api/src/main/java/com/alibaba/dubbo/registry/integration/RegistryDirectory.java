@@ -205,6 +205,7 @@ public class RegistryDirectory<T> extends AbstractDirectory<T> implements Notify
         if (routerUrls != null && routerUrls.size() > 0) {
             List<Router> routers = toRouters(routerUrls);
             if (routers != null) { // null - do nothing
+                // 刷新路由规则
                 setRouters(routers);
             }
         }
@@ -565,6 +566,12 @@ public class RegistryDirectory<T> extends AbstractDirectory<T> implements Notify
         }
     }
 
+    /**
+     * invokers的读取操作（获取）
+     * 写操作在notify方法中，实现的notifyListener的接口，通过注册中心获取到节点变化后的回调该函数实现
+     * @param invocation
+     * @return
+     */
     public List<Invoker<T>> doList(Invocation invocation) {
         if (forbidden) {
             throw new RpcException(RpcException.FORBIDDEN_EXCEPTION, "Forbid consumer " + NetUtils.getLocalHost() + " access service " + getInterface().getName() + " from registry " + getUrl().getAddress() + " use dubbo version " + Version.getVersion() + ", Please check registry access list (whitelist/blacklist).");

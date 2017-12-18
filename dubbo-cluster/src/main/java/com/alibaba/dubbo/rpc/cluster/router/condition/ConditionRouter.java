@@ -158,6 +158,7 @@ public class ConditionRouter implements Router, Comparable<Router> {
             }
             for (Invoker<T> invoker : invokers) {
                 if (matchThen(invoker.getUrl(), url)) {
+                    // 匹配到了
                     result.add(invoker);
                 }
             }

@@ -119,6 +119,17 @@ public abstract class AbstractClusterInvoker<T> implements Invoker<T> {
         return invoker;
     }
 
+    /**
+     * 负载均衡策略
+     * 缺省使用随机
+     * 如果集群数量是2，退化成轮询
+     * @param loadbalance
+     * @param invocation
+     * @param invokers
+     * @param selected
+     * @return
+     * @throws RpcException
+     */
     private Invoker<T> doselect(LoadBalance loadbalance, Invocation invocation, List<Invoker<T>> invokers, List<Invoker<T>> selected) throws RpcException {
         if (invokers == null || invokers.size() == 0)
             return null;
@@ -128,6 +139,7 @@ public abstract class AbstractClusterInvoker<T> implements Invoker<T> {
         if (invokers.size() == 2 && selected != null && selected.size() > 0) {
             return selected.get(0) == invokers.get(0) ? invokers.get(1) : invokers.get(0);
         }
+        // 选择算法
         Invoker<T> invoker = loadbalance.select(invokers, getUrl(), invocation);
 
         //如果 selected中包含（优先判断） 或者 不可用&&availablecheck=true 则重试.
